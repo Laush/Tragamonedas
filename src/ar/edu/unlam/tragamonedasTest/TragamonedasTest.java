@@ -2,36 +2,39 @@
 package ar.edu.unlam.tragamonedasTest;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
-import ar.edu.unlam.tragamonedas.RandoNumberGenerator;
+
+import ar.edu.unlam.tragamonedas.Tambor;
 import ar.edu.unlam.tragamonedas.Tragamonedas;
 
 public class TragamonedasTest {	
 	
 	@Test
-	public void los3TamboresDelTragamonedasEstanEnLaPosicion1(){
-		Tragamonedas miTragamonedas = new Tragamonedas();
-		
-		assertTrue(miTragamonedas.tamborUno.getPosicion() == 1 &&
-				   miTragamonedas.tamborDos.getPosicion() == 1 &&
-				   miTragamonedas.tamborTres.getPosicion() == 1
-				  );
+	public void creacionCorrectaDeLosTambores(){
+		Tragamonedas t = new Tragamonedas(new Tambor(6),new Tambor(6),new Tambor(6));
+		assertTrue(t.getTamborUno()!=null);
+		assertTrue(t.getTamborDos()!=null);
+		assertTrue(t.getTamborTres()!=null);
 	}
 	
-	@Test
-	public void queSeCreeUnNumeroAleatorioEntreUnoYDiez() {
-		RandoNumberGenerator newGenerator = new RandoNumberGenerator();
-		Integer numeroAleatorio = newGenerator.generate();
-		assertTrue(numeroAleatorio >0 && numeroAleatorio <= 10);
-	}
 	
+	// El rango es de 1 a 10
 	@Test
-	public void queEntreguePremioONo(){
-		Tragamonedas miTragamonedas = new Tragamonedas();
-		miTragamonedas.activar();
+	public void queGireAleatoriamenteEnUnRango() {
+		Tragamonedas t = new Tragamonedas(new Tambor(6),new Tambor(6),new Tambor(6));
+		t.activar();
 		
-		if(miTragamonedas.entregaPremio())
-			assertTrue(miTragamonedas.entregaPremio());
+		Integer valorMinimo=1;
+		Integer valorMaximo=10;
+		
+		assertTrue(t.getTamborUno()>=valorMinimo && t.getTamborUno()<=valorMaximo);
+		assertTrue(t.getTamborDos()>=valorMinimo && t.getTamborDos()<=valorMaximo);
+		assertTrue(t.getTamborTres()>=valorMinimo && t.getTamborTres()<=valorMaximo);
+		
 	}
 	
 }
+	
+
+

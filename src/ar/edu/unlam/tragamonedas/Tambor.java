@@ -1,20 +1,17 @@
 package ar.edu.unlam.tragamonedas;
 
+import java.util.Random;
+
 public class Tambor {
-	
-	private Integer numero;
-	
-	public Tambor(FixNumberGenerator newGenerator){
-		this.numero = newGenerator.generate();
+	private Integer lados;
+
+	public Tambor(Integer lados) {
+			this.lados = lados;
+		}
+
+	public Integer girar() {
+			Random generator = new Random();
+			return generator.nextInt(this.lados) + 1;
+		}
 	}
 
-	public Integer getPosicion(){
-		return this.numero;
-	}
-	
-	public void girar(){
-		RandoNumberGenerator nuevaPosicion = new RandoNumberGenerator();
-		this.numero = nuevaPosicion.generate();
-	}
-	
-}
